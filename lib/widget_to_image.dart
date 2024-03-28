@@ -1,28 +1,4 @@
-import 'dart:io';
-import 'dart:typed_data';
-import 'dart:ui' as ui;
-import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:pdf/widgets.dart' as pw;
-import 'package:open_file/open_file.dart';
-
-///Widget to image to pdf
-
-
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: PdfScreen(),
-    );
-  }
-}
-
+/*
 class PdfScreen extends StatefulWidget {
   @override
   _PdfScreenState createState() => _PdfScreenState();
@@ -40,22 +16,9 @@ class _PdfScreenState extends State<PdfScreen> {
       await image.toByteData(format: ui.ImageByteFormat.png);
       Uint8List? pngBytes = byteData?.buffer.asUint8List();
 
-      final pdf = pw.Document();
-      pdf.addPage(
-        pw.Page(
-          build: (pw.Context context) {
-            return pw.Center(
-              child: pw.Image(
-                pw.MemoryImage(pngBytes!),
-              ),
-            );
-          },
-        ),
-      );
-
       final output = await getExternalStorageDirectory();
-      final file = File('${output?.path}/example.pdf');
-      await file.writeAsBytes(await pdf.save());
+      final file = File('${output?.path}/example.png'); // Use .png extension
+      await file.writeAsBytes(pngBytes as List<int>);
 
       OpenFile.open(file.path);
     }
@@ -86,4 +49,4 @@ class _PdfScreenState extends State<PdfScreen> {
       ),
     );
   }
-}
+}*/
